@@ -26,11 +26,14 @@ jobs:
           cd src  # Move into src directory first
           PYTHONPATH=$PYTHONPATH:. pytest tests/
 
-      - name: Run ETL process
+      - name: Run ETL with verification
         run: |
-          python src/extract.py
-          python src/transform.py
-          python src/load.py
+          echo "=== Starting ETL ==="
+          cd src
+          python extract.py && echo "Extract succeeded" || echo "Extract failed"
+          python transform.py && echo "Transform succeeded" || echo "Transform failed"
+          python load.py && echo "Load succeeded" || echo "Load failed"
+          ls -la  # Show files after execution
 
       - name: Verify file existence
         run: |
