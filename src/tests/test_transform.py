@@ -1,6 +1,5 @@
 import pytest
-from src.transform import transform
-
+from ..transform import transform  # Relative import
 sample_data = [{"address": {"city": "Paris"}}, {"address": {"city": "Tokyo"}}]
 
 def test_transform():
