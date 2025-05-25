@@ -32,6 +32,16 @@ jobs:
           python src/transform.py
           python src/load.py
 
+      - name: Verify file existence
+        run: |
+          ls -la  # List all files
+          if [ -f "output.csv" ]; then
+          echo "File exists!"
+          else
+          echo "ERROR: File not found!"
+          exit 1
+           fi
+
       - name: Upload output
         uses: actions/upload-artifact@v4
         with:
